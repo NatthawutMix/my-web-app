@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, { useState } from 'react';
 import Product from "./Product";
 import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
