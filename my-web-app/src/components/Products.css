@@ -1,0 +1,24 @@
+.product {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.product_container {
+    margin-top: 100px;
+    width: 300px;
+    height: fit-content;
+    display: flex;
+    flex-direction: column;
+    border-radius: 5px;
+    border: 1px solid black;
+    padding: 30px; 
+}
+
+.product_img {
+    margin: 20;
+    max-height: 200px;
+    object-fit: contain;
+    margin-bottom: 15px;
+    border: solid black;
+}
