@@ -7,7 +7,6 @@ export const START_PAGE = "product/START_PAGE";
 
 const INITIAL_STATE = {
     products: [],
-    cart: []
 }
 
 export default (state = INITIAL_STATE, action) => {
@@ -39,12 +38,23 @@ export default (state = INITIAL_STATE, action) => {
             return {
                 ...state, products:newProducts
             }
+            
         case 'UPDATE_PRODUCT':
             return {
                 ...state,
                 products: state.products.map((product) => 
                     product._id === action._id 
-                     ? { ...product, product: action.product }
+                     ? { ...product, 
+                            _id: action._id,
+                            name: action.product.name,
+                            description: action.product.description,
+                            price: action.product.price,
+                            stock: action.product.stock,
+                            gender: action.product.gender,
+                            image: action.product.image,
+                            size: action.product.size,
+                            date: action.product.date,
+                        } 
                      : product
                 )
             }
@@ -75,7 +85,7 @@ export const updateProduct = (product, _id) => {
     axios.put(`/product/${_id}`, {
         params: _id,
         data: product
-    })
+    }) 
     return dispatch =>
         dispatch({
             type: 'UPDATE_PRODUCT',

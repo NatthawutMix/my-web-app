@@ -7,7 +7,7 @@ import * as dayjs from 'dayjs'
 
 function CreateProduct( { createProduct } ) {    
 
-    const [date,setDate] = useState(dayjs().format("HH.m.s dd:DD/MM/YYYY"))
+    const [date,setDate] = useState(dayjs().format())
 
     const [product, setProduct] = useState({
         id: '',

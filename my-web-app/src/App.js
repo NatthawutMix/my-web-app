@@ -5,6 +5,7 @@ import { BrowserRouter as Router, Switch, Route} from "react-router-dom";
 import Homepage from "./components/Homepage";
 import CreateProduct from "./components/CreateProduct";
 import UpdateProduct from "./components/UpdateProduct";
+import Cart from "./components/Cart";
 
 import { startPage } from "../src/redux/product";
 import { connect } from 'react-redux';
@@ -29,6 +30,9 @@ function App( {startPage} ) {
             <Route path="/create">
               <CreateProduct />
             </Route>
+            <Route path="/cart">
+              <Cart />
+            </Route>
             <Route path="/">
               <Homepage />
             </Route>
@@ -38,11 +42,15 @@ function App( {startPage} ) {
    
   );
 }
-
+const mapStateToProps = (state) => {
+  return {
+      products: state.product.products
+  }
+}
 const mapDispatchToProps = (dispatch) => {
-  return{
+  return {
       startPage: (product) => dispatch(startPage(product)),
   }
 }
 
-export default connect(null, mapDispatchToProps)(App);
+export default connect(mapStateToProps, mapDispatchToProps)(App);

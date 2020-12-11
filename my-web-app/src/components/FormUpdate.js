@@ -17,6 +17,7 @@ function FormUpdate( {val, removeProduct, updateProduct} ) {
         date: val.date,
         view: val.view,
     });  
+
     return (
         <div className="product">
             <div className="product_container">  
@@ -26,14 +27,14 @@ function FormUpdate( {val, removeProduct, updateProduct} ) {
                 })}/>      
                 <img className="product_img" src={product.image} alt="" />    
                 <p>Gander</p>
-                <select name="gender" onChange={ 
+                <select name="gender" value={product.gender} onChange={ 
                     e => setProduct({...product, [e.target.name]: e.target.value})
                 }>
                     <option value="Male">Male</option>
                     <option value="Female">Female</option>
                 </select>                
                 <p>Size</p>
-                <select name="size" onChange={ 
+                <select name="size" value={product.size} onChange={ 
                     e => setProduct({...product, [e.target.name]: e.target.value})
                 }> 
                     <option value="S">S</option>
@@ -66,7 +67,7 @@ function FormUpdate( {val, removeProduct, updateProduct} ) {
 }
 
 const mapDispatchToProps = (dispatch) => {
-    return{
+    return {
         removeProduct: (id) => dispatch(removeProduct(id)),
         updateProduct: (product, id) => dispatch(updateProduct(product, id)),
     }

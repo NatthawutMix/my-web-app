@@ -1,6 +1,9 @@
 import React from 'react'
 import "./Products.css";
-function Product( {product} ) {
+import { connect } from "react-redux";
+import { addToCart } from "../redux/cart";
+
+function Product( {product, addToCart} ) {
     return (
         <div className="product">
             <div className="product_container" >
@@ -9,10 +12,17 @@ function Product( {product} ) {
                 <img className="product_img" src={product.image} alt=""/>
                 <p>Size {product.size} </p>
                 <p>Stock: {product.stock} </p>
-                <p>Price: {product.price} Bath</p>          
+                <p>Price: {product.price} Bath</p>
+                <button onClick={() => addToCart(product)}>BUY</button>    
             </div>
         </div>
     )
 }
 
-export default Product
+const mapDispatchToProps = (dispatch) => {
+    return {
+        addToCart: (product) => dispatch(addToCart(product)),
+    }
+}
+
+export default connect(null, mapDispatchToProps)(Product)
