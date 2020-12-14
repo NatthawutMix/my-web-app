@@ -8,17 +8,18 @@ function UpdateProduct( {products} ) {
     const [id, setId] = useState(''); 
     return (
         <div>
+            ID or Name: 
             <input type='text' value={id} onChange=
                 {e => setId(e.target.value)} />
-                <Link to="/">Home</Link>
-                <div>            
-                    {products.filter(product => product.id.includes(id) || product.name.includes(id)).map(product => (
-                        <FormUpdate
-                            key={product.id}
-                            val={ product }
-                        />
-                    ))}
-                </div>
+            <Link to="/">Home</Link>
+            <div>            
+                {products.filter(product => product.id.includes(id) || product.name.includes(id)).map(product => (
+                    <FormUpdate
+                        key={product.id}
+                        val={ product }
+                    />
+                ))}
+            </div>
         </div>
     )
 }

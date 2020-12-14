@@ -1,8 +1,10 @@
 export const ADD_TO_CART = "cart/ADD_TO_CART";
 export const REMOVE_FROM_CART ="cart/REMOVE_FROM_CART";
+export const SET_USER ="cart/SET_USER";
 
 const INITIAL_STATE = {
     cart: [],
+    user: null,
 }
 
 export default (state = INITIAL_STATE, action) => {
@@ -39,6 +41,11 @@ export default (state = INITIAL_STATE, action) => {
             return {
                 ...state, cart:newCart
             }
+        case 'SET_USER':
+            return {
+                ...state,
+                user: action.user
+            }
         default:
             return state;
     }
@@ -57,5 +64,13 @@ export const removeItem = (_id) => {
         dispatch({
             type: 'REMOVE_FROM_CART',
             _id
+        })
+}
+
+export const setUser = (user) => {
+    return dispatch =>
+        dispatch({
+            type: 'SET_USER',
+            user
         })
 }
