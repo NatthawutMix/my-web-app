@@ -1,6 +1,9 @@
+import axios from "../axios";
+
 export const ADD_TO_CART = "cart/ADD_TO_CART";
 export const REMOVE_FROM_CART ="cart/REMOVE_FROM_CART";
 export const SET_USER ="cart/SET_USER";
+export const CREATE_USER ="cart/CREATE_USER";
 
 const INITIAL_STATE = {
     cart: [],
@@ -46,6 +49,8 @@ export default (state = INITIAL_STATE, action) => {
                 ...state,
                 user: action.user
             }
+        case 'CREATE_USER':
+            return state;
         default:
             return state;
     }
@@ -72,5 +77,12 @@ export const setUser = (user) => {
         dispatch({
             type: 'SET_USER',
             user
+        })
+}
+export const createUser = (user) => {
+    axios.post("/profile", user)
+    return dispatch =>
+        dispatch({
+            type: 'CREATE_USER',
         })
 }

@@ -3,7 +3,7 @@ import axios from "../axios";
 export const CREATE_PRODUCT = "product/CREATE_PRODUCT";
 export const REMOVE_PRODUCT = "product/REMOVE_PRODUCT";
 export const UPDATE_PRODUCT = "product/UPDATE_PRODUCT";
-export const START_PAGE = "product/START_PAGE";
+export const LIST_PRODUCT = "product/LIST_PRODUCT";
 
 const INITIAL_STATE = {
     products: [],
@@ -11,9 +11,9 @@ const INITIAL_STATE = {
 
 export default (state = INITIAL_STATE, action) => {
     switch (action.type) {
-        case 'START_PAGE':
+        case 'LIST_PRODUCT':
             return {
-                products: action.product
+                products: action.product.data
             }
 
         case 'CREATE_PRODUCT':
@@ -73,12 +73,15 @@ export const createProduct = (product) => {
         })
 }
 
-export const startPage = (product) => {
-    return dispatch =>
+export const listProduct = () => {    
+    return async dispatch => {
+        const product = await axios.get("/product")
         dispatch({
-            type: 'START_PAGE',
+            type: 'LIST_PRODUCT',
             product
         })
+    }
+        
 }
 
 export const updateProduct = (product, _id) => {    

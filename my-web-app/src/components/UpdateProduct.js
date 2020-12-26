@@ -1,7 +1,6 @@
 import React, {useState} from 'react'
 import { connect } from 'react-redux'
 import { Link } from "react-router-dom"
-import Product from './Product'
 import FormUpdate from './FormUpdate'
 
 function UpdateProduct( {products} ) {
@@ -26,7 +25,7 @@ function UpdateProduct( {products} ) {
 
 const mapStateToProps = (state) => {
     return {
-        products: state.product.products
+        products: state.product.products,
     }
 }
 

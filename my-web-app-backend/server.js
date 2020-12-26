@@ -3,6 +3,7 @@ import mongoose from 'mongoose';
 import cors from 'cors';
 
 import Products from './dbProduct.js';
+import Profile from './dbProfile.js';
 
 const app = express();
 const port = process.env.PORT || 8001;
@@ -68,6 +69,18 @@ app.delete('/product/:id', async (req,res) => {
     } catch {
         res.status(404).send({err})
     }    
+})
+
+app.post("/profile", (req, res) => {
+    const dbProfile = req.body;
+
+    Profile.create(dbProfile, (err, data) => {
+        if(err) {
+            res.status(500).send(err);
+        } else {
+            res.status(201).send(data);
+        }
+    })
 })
 
 app.listen(port, () => console.log(`listening on localhost: ${port}`));

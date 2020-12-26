@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { connect } from "react-redux";
 import { Link } from 'react-router-dom';
 import ItemCart from './ItemCart';
+import "./Cart.css"
 
 function Cart( {cart} ) {
     const [totalItems, setTotalItems] = useState(0);
@@ -19,17 +20,17 @@ function Cart( {cart} ) {
     }, [cart, totalItems,totalPrice])
 
     return (
-        <div>
-            <Link to="/">Home</Link>
+        <div className="cart">
             <p>totalItems: {totalItems}</p>
             <p>totalPrice: {totalPrice}</p>
-            {cart.map((item) => (
-                <ItemCart 
-                    key={item._id}
-                    item={ item } 
-                />
-            ))}
-           
+            <div className="cart_item">
+                {cart.map((item) => (
+                    <ItemCart 
+                        key={item._id}
+                        item={ item } 
+                    />
+                ))}
+            </div>
         </div>
     )
 }
